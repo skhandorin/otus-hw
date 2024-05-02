@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hw-12-dp
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: hw-12
+  template:
+    metadata:
+      labels:
+        app: hw-12
+    spec:
+      containers:
+        - name: hw-12
+          image: skhandorin/otus-hw:v1.2
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8000
+              protocol: TCP
+            - name: actuator
+              containerPort: 8081
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: actuator
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: actuator
+            failureThreshold: 3
+            periodSeconds: 10
+          startupProbe:
+            httpGet:
+              path: /actuator/health
+              port: actuator
+            initialDelaySeconds: 15
+            failureThreshold: 30
+            periodSeconds: 10
+      restartPolicy: Always
+      

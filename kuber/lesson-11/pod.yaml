@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app-kuber
+  labels:
+    app: app-kuber
+spec:
+  containers:
+    - name: app-kuber
+      image: skhandorin/hw2:latest
+      imagePullPolicy: IfNotPresent
+      ports:
+        - containerPort: 8000
+  restartPolicy: Always
+  

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app-kuber2
+  labels:
+    app: app-kuber2
+spec:
+  containers:
+    - name: app-kuber2
+      image: roflmaoinmysoul/otus:v2.0
+      ports:
+        - containerPort: 8000

@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: hw2
+
+server:
+  port: 8000
+
+management:
+  server:
+    port: 8081
+  endpoint:
+    health:
+      enabled: true
+      show-details: ALWAYS
+      probes:
+        enabled: true
+    info:
+      enabled: true
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include:
+          - health
+          - info

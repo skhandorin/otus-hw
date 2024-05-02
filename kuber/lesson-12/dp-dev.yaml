@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kuber-dp-dev
+  labels:
+    app: kuber-dp-dev
+spec:
+  replicas: 3
+  minReadySeconds: 5
+  selector:
+    matchLabels:
+      env: dev
+  template:
+    metadata:
+      labels:
+        env: dev
+    spec:
+      containers:
+        - name: kuber-app-v1-1
+          image: skhandorin/hw2:v1.1
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      
